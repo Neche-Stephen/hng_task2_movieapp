@@ -1,0 +1,15 @@
+.main_section{
+    font-family: DM Sans;
+    color: #000;
+}
+
+.main_title{
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.main_see_more{
+    color: var(--rose-700, #BE123C);
+    font-size: 18px;
+    font-weight: 400;
+}

@@ -1,0 +1,65 @@
+.header_section{
+    background-image: url('../../assets/Poster.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    font-family: DM Sans;
+    padding-top: 20px;
+    padding: 5px 0px 200px 0px;
+    /* height: 100vh; */
+}
+
+
+.header_nav{
+    margin-bottom: 100px;
+}
+.header_title{
+    color: #FFF;
+    font-family: DM Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 100% */
+}
+
+.header_search{
+    border-radius: 6px;
+    border: 2px solid var(--gray-300, #D1D5DB);
+    background-color: rgba(255, 255, 255, 0) !important;
+    width: 100%;
+}
+input::placeholder {
+    color: var(--white, #FFF);
+    font-size: 15px;
+    line-height: 24px; /* 150% */
+  }
+
+.header_menu{
+    padding: 5px;
+    background-image: url('../../assets/Ellipse\ 1.svg');
+    background-size: cover;
+}
+
+.header_subtitle{
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.header_rating{
+    font-size: 12px;
+}
+
+.header_subtitle_text{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.header_subtitle_btn{
+    padding: 6px 16px;
+    gap: 5px;
+    border-radius: 6px;
+    background: var(--rose-700, #BE123C);
+    color: var(--white, #FFF);
+    font-size: 14px;
+    font-weight: 500;
+}
