@@ -14,18 +14,18 @@ import './Header.css'
 export default function () {
   return (
   <header className='header_section'>
-         <Container className=''>
-            <Row className='header_nav justify-content-between align-items-center'>
-                    <Col xs = '2'>
+         <Container fluid className="container-lg" >
+            <Row className='header_nav justify-content-evenly justify-content-between align-items-center'>
+                    <Col xs = '4' lg = '2'>
                         <div className='d-flex align-items-center'>
                             <img src={TV_LOGO} alt="TV LOGO" />
                             <span className='header_title ms-4 position-relative'>MovieBox</span>
                         </div>
                     </Col>
-                    <Col  xs = '5'>
+                    <Col xs ='6' md = '3' lg = '5'>
                         <input type="text"  className='header_search' placeholder='What do you want to watch?'/>
                     </Col>
-                    <Col  xs = '2'>
+                    <Col className='d-none d-md-block'  xs ='5' lg = '2'>
                     <div className='d-flex align-items-center justify-content-end'>
                             <span className=''>Sign in</span>
                             <img src={MENU} alt="Menu" className='header_menu ms-4' />
@@ -34,8 +34,8 @@ export default function () {
 
             </Row>
 
-            <Row className='align-items-center'>
-                <Col xs ='4'>
+            <Row className='justify-content-center justify-content-lg-start align-items-center'>
+                <Col xs ='8' lg = '4'>
                     <div><h1 className='header_subtitle'>John Wick 3: Parabellum</h1></div>
                     <div className='d-flex align-items-cente'>
                        <div className='me-4'>

@@ -81,12 +81,12 @@ export default function MoviePage() {
   return (
     <>
       <Button variant="primary" className="d-lg-none" onClick={handleShow}>
-        Launch
+       View Sidebar
       </Button>
 
      <Container fluid className=''>
         <Row>
-          <Col xs = '2'>
+          <Col className='d-none d-lg-block' lg = '2'>
            
              <Offcanvas  className='movie_offcanvas' show={show} onHide={handleClose} responsive="lg">
                 <Offcanvas.Body>
@@ -133,7 +133,7 @@ export default function MoviePage() {
               </Col>
             :
            loaded ?
-           <Col xs ='7' >
+           <Col xs ='12' lg = '8' >
             <Row className='mt-5'>
                 <Col>
                     <div style={{backgroundImage:`url(${posterUrl})`}} className='movie_img'>
