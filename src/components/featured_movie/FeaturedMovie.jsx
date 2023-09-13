@@ -10,7 +10,8 @@ export default function FeaturedMovie({movie, index}) {
         <div className='card' data-testid = 'movie-card'>
             <Link to={`/movies/${id}`}><img src={posterUrl} alt="" className='card-img-top' data-testid = 'movie-poster' /></Link>
             <div className='card-body'>
-                <p className='card-title'>{title}</p>
+                <p className='card-title' data-testid = 'movie-title'>{title}</p>
+                <p className='card-text' data-testid = 'movie-release-date'>{release_date}</p>
             </div>
         </div>
     </Col>

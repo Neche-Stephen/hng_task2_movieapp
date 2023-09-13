@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 
-
+import Spinner from 'react-bootstrap/Spinner';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -12,8 +13,6 @@ import LOGOUT from '../../assets/Logout.png';
 import MOVIE_PROJECTOR from '../../assets/Movie_Projector.png';
 import TV_SHOW from '../../assets/TV_Show.png';
 import CALENDAR from '../../assets/Calendar.png';
-
-
 
 // import { useScrollRestoration } from 'react-router-dom';
 
@@ -26,10 +25,11 @@ import CALENDAR from '../../assets/Calendar.png';
 //   return null;
 // }
 
-
-
 const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 export default function MoviePage() {
+  const [spinner, setSpinner] = useState(true);
+  const [loaded, setLoaded] = useState(false);
+
   const { id } = useParams();
   const apiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
 
@@ -42,28 +42,39 @@ export default function MoviePage() {
   const [movieDetails, setMovieDetails] = useState({});
   const { title, release_date, runtime, overview, poster_path, backdrop_path  } = movieDetails
   const posterUrl = `https://image.tmdb.org/t/p/w500${backdrop_path}`;
-  // // Parse the input date string and create a Date object
-  // const inputDate = new Date(release_date);
-  // // Convert the date to UTC by using toISOString()
-  // const utcDateStr = inputDate.toISOString();
-
   
 
   useEffect(()=>{
     fetch(apiUrl)
   .then((response) => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
     return response.json();
   })
   .then((data) => {
-    // Handle the movie data here
-    console.log(data)
+    // console.log(data)
     setMovieDetails(data);
+    setSpinner(false);
+    setLoaded(true);
   })
   .catch((error) => {
-    // Handle errors here
+    if (error.type === 'network') {
+      console.log('Network error:', error.message);
+      setSpinner(false);
+      setLoaded(false);
+      // Handle network-related error, e.g., display a message to the user
+    }
+    else if (error.message === 'Failed to fetch'){
+      setTimeout(() => {
+        alert('Your network is unstable')
+      }, 1000);
+      setSpinner(false);
+      setLoaded(false);
+    }
+    else {
+      console.log('Other error:', error.message);
+      // Handle other types of errors
+      setSpinner(false);
+      setLoaded(false);
+    }
   });
   }, [])
 
@@ -109,30 +120,51 @@ export default function MoviePage() {
               </Offcanvas>
            
           </Col>
-          <Col xs ='7' >
-              <Row className='mt-5'>
-                  <Col>
-                      <div style={{backgroundImage:`url(${posterUrl})`}} className='movie_img'>
-                          
-                      </div>
+          {
+            spinner ? 
+              <Col>
+              <Row className='justify-content-center mt-5'>
+                  <Col xs ='auto'>
+                    <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
                   </Col>
               </Row>
-              <Row>
+              </Col>
+            :
+           loaded ?
+           <Col xs ='7' >
+            <Row className='mt-5'>
                 <Col>
-                  <div className='d-flex justify-content-between'>
-                      <span data-testid = 'movie-title'>Title:{title}</span>
-                      <span data-testid = 'movie-release-date'>Release Date: {release_date}</span>
-                      <span data-testid = 'movie-runtime'>Runtime: {runtime} minutes</span>
-                      {/* <span>{utcDateStr}</span> */}
-                  </div>
+                    <div style={{backgroundImage:`url(${posterUrl})`}} className='movie_img'>
+                        
+                    </div>
                 </Col>
-              </Row>
-              <Row>
-                  <Col>
-                    <p data-testid = 'movie-overview'>After thirty years, Maverick is still pushing the envelope as a top naval aviator but must confront ghosts of his past when he leads TOP GUN's elite graduates on a mission that demands the ultimate sacrifice from those chosen to fly it.</p>
-                  </Col>
-              </Row>
+            </Row>
+            <Row>
+              <Col>
+                <div className='d-flex justify-content-between'>
+                    <span data-testid = 'movie-title'>Title:{title}</span>
+                    <span data-testid = 'movie-release-date'>Release Date: {release_date}</span>
+                    <span data-testid = 'movie-runtime'>Runtime: {runtime} minutes</span>
+                    <div> <span className='five-pointed-star'></span></div>
+                    {/* <span>{utcDateStr}</span> */}
+                </div>
+              </Col>
+            </Row>
+            <Row>
+                <Col>
+                  <p data-testid = 'movie-overview'>{overview}</p>
+                </Col>
+            </Row>
+           </Col>
+          :
+          <Col>
+            <Alert  variant='warning' className='mt-5'>
+            Sorry, the movie details couldnt be fetched due to network issues, refresh your page to try again
+          </Alert>
           </Col>
+          }
         </Row>
      </Container>
     </>
