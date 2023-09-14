@@ -4,7 +4,6 @@ import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 
 import './Main.css';
-
 import FeaturedMovie from '../featured_movie/FeaturedMovie';
 import CHEVRON_RIGHT from '../../assets/Chevron_right.svg';
 
@@ -24,7 +23,6 @@ export default function Main() {
     return response.json();
   })
   .then((data) => {
-    // console.log(data);
     setMoviesData(data.results)
     setSpinner(false);
     setLoaded(true);
@@ -34,7 +32,6 @@ export default function Main() {
       console.log('Network error:', error.message);
       setSpinner(false);
       setLoaded(false);
-      // Handle network-related error, e.g., display a message to the user
     }
     else if (error.message === 'Failed to fetch'){
       setTimeout(() => {
@@ -45,7 +42,6 @@ export default function Main() {
     }
     else {
       console.log('Other error:', error.message);
-      // Handle other types of errors
       setSpinner(false);
       setLoaded(false);
     }

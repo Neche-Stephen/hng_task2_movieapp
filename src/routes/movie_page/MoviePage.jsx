@@ -9,7 +9,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './MoviePage.css';
 import TV_LOGO from '../../assets/tv.png';
 import HOME from '../../assets/Home.png';
-import LOGOUT from '../../assets/Logout.png';
 import MOVIE_PROJECTOR from '../../assets/Movie_Projector.png';
 import TV_SHOW from '../../assets/TV_Show.png';
 import CALENDAR from '../../assets/Calendar.png';
@@ -20,10 +19,8 @@ const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 
 export default function MoviePage() {
    const [isFav, setIsFav] = useState(false);
-
   const [spinner, setSpinner] = useState(true);
   const [loaded, setLoaded] = useState(false);
-
   const { id } = useParams();
   const apiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
 
@@ -47,7 +44,6 @@ export default function MoviePage() {
     return response.json();
   })
   .then((data) => {
-    // console.log(data)
     setMovieDetails(data);
     setSpinner(false);
     setLoaded(true);
@@ -57,7 +53,6 @@ export default function MoviePage() {
       console.log('Network error:', error.message);
       setSpinner(false);
       setLoaded(false);
-      // Handle network-related error, e.g., display a message to the user
     }
     else if (error.message === 'Failed to fetch'){
       setTimeout(() => {
@@ -68,7 +63,6 @@ export default function MoviePage() {
     }
     else {
       console.log('Other error:', error.message);
-      // Handle other types of errors
       setSpinner(false);
       setLoaded(false);
     }

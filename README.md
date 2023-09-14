@@ -4,7 +4,7 @@
 
 2. Scroll down and view the featured movies on the landing page, click on any movie image to see more details
 
-3. On clicking any movie image, you will be directed to another page, containing more details about the movie
+3. On clicking any movie image/poster, you will be directed to another page, containing more details about the movie
 
 4. Use the search feature on the Landing page to search for different movies using the title.
 

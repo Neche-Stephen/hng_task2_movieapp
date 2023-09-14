@@ -53,21 +53,21 @@ export default function () {
   return (
   <header className='header_section'>
          <Container fluid className="container-lg position-relative" >
-            <Row className='header_nav justify-content-evenly justify-content-lg-between align-items-center'>
-                    <Col xs = '4' lg = '2'>
+            <Row className='header_nav justify-content-center justify-content-sm-evenly justify-content-lg-between align-items-center'>
+                    <Col xs = 'auto' sm = '4' lg = '2'>
                         <div className='d-flex align-items-center'>
                             <img src={TV_LOGO} alt="TV LOGO" />
                             <span className='header_title ms-4 position-relative'>MovieBox</span>
                         </div>
                     </Col>
-                    <Col xs ='6' md = '3' lg = '5' className='position-relative'>
+                    <Col xs ='10' sm = '6' md = '4' lg = '5' className='position-relative mt-3 mt-sm-0'>
                         <input type="text"  className='header_search' placeholder='What do you want to watch?'
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         />
                         <img onClick={handleSearch} className='header_search_icon' src={SEARCH} alt="" />
                     </Col>
-                    <Col className='d-none d-md-block'  xs ='5' lg = '2'>
+                    <Col className='d-none d-md-block'  md ='4' lg = '2'>
                     <div className='d-flex align-items-center justify-content-end'>
                             <span className=''>Sign in</span>
                             <img src={MENU} alt="Menu" className='header_menu ms-4' />

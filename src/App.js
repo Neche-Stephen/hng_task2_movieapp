@@ -12,7 +12,6 @@ function App() {
       <Routes>
         <Route path='/' element = {<HomePage />}/>
         <Route path="/movies/:id" element = {<MoviePage />}/>
-        {/* <Route path="/movies/:id" component={<MoviePage />} /> */}
       </Routes>
     </BrowserRouter>
   
