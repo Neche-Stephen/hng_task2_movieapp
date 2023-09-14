@@ -13,20 +13,14 @@ import LOGOUT from '../../assets/Logout.png';
 import MOVIE_PROJECTOR from '../../assets/Movie_Projector.png';
 import TV_SHOW from '../../assets/TV_Show.png';
 import CALENDAR from '../../assets/Calendar.png';
-
-// import { useScrollRestoration } from 'react-router-dom';
-
-// function ScrollToTop() {
-//   const scrollRestoration = useScrollRestoration();
-
-//   // Disable scroll restoration
-//   scrollRestoration.scrollToTop = () => {};
-
-//   return null;
-// }
+import NOT_FAV from '../../assets/favorite.svg';
+import FAV from '../../assets/yellow.svg';
 
 const apiKey = process.env.REACT_APP_TMDB_API_KEY;
+
 export default function MoviePage() {
+   const [isFav, setIsFav] = useState(false);
+
   const [spinner, setSpinner] = useState(true);
   const [loaded, setLoaded] = useState(false);
 
@@ -43,6 +37,9 @@ export default function MoviePage() {
   const { title, release_date, runtime, overview, poster_path, backdrop_path  } = movieDetails
   const posterUrl = `https://image.tmdb.org/t/p/w500${backdrop_path}`;
   
+  const toggleFav = () => {
+    setIsFav(!isFav)
+  };
 
   useEffect(()=>{
     fetch(apiUrl)
@@ -143,11 +140,11 @@ export default function MoviePage() {
             </Row>
             <Row>
               <Col>
-                <div className='d-flex justify-content-between'>
-                    <span data-testid = 'movie-title'>Title:{title}</span>
-                    <span data-testid = 'movie-release-date'>Release Date: {release_date}</span>
-                    <span data-testid = 'movie-runtime'>Runtime: {runtime} minutes</span>
-                    <div> <span className='five-pointed-star'></span></div>
+                <div className='d-flex justify-content-between mb-3'>
+                    <span data-testid = 'movie-title' className='movie_title'> {title}</span>
+                    <span data-testid = 'movie-release-date' className='movie_date'> {release_date}</span>
+                    <span data-testid = 'movie-runtime' className='movie_runtime'>{runtime} minutes</span>
+                    <span><img onClick= {toggleFav} src={isFav ? FAV:NOT_FAV} className = 'w-100' alt="" /></span>
                     {/* <span>{utcDateStr}</span> */}
                 </div>
               </Col>

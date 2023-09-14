@@ -17,6 +17,10 @@
     border-radius: 20px;
 }
 
+.movie_title, .movie_date, .movie_runtime{
+    font-weight: 500;
+}
+
 .five-pointed-star {
     --star-color:orange;
     margin:1em auto;
